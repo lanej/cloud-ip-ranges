@@ -7,10 +7,10 @@ cloud_csv:
 	# cloudflare
 	cat cloudflare*.txt | while IFS= read -r line; do echo "\"CLOUDFLARE\",\"UNKNOWN\",$line"; done >> cloud_ip_ranges.csv
 	# apple
-	xsv select 2,4,1 < apple-icloud-private-relay-ip-ranges.csv | sed 's/,/-/' | while read -r line; do echo "APPLE,$line"; done > cloud_ip_ranges.csv
+	xsv select 2,4,1 < apple-icloud-private-relay-ip-ranges.csv | sed 's/,/-/' | while read -r line; do echo "APPLE,$line"; done >> cloud_ip_ranges.csv
 	# digitalocean
-	xsv select 3,1 < digitalocean.csv | while read -r line; do echo "DIGITALOCEAN,$line"; done > cloud_ip_ranges.csv
+	xsv select 3,1 < digitalocean.csv | while read -r line; do echo "DIGITALOCEAN,$line"; done >> cloud_ip_ranges.csv
 	# linode
-	sed '/^#/d' < linode.txt | xsv select 3,1 | while read -r line; do echo "LINODE,$line"; done > cloud_ip_ranges.csv
+	sed '/^#/d' < linode.txt | xsv select 3,1 | while read -r line; do echo "LINODE,$line"; done >> cloud_ip_ranges.csv
 
 
